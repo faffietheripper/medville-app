@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+import React, { useState } from "react";
 
 export default function MedvilleAi() {
   return (

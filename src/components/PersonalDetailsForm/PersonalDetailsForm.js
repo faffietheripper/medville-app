@@ -60,6 +60,7 @@ export default function PersonalDetailsForm() {
         <p className="text-sm font-light leading-none text-gray-600 mt-0.5">
           Your details and place of birth
         </p>
+
         <form onSubmit={handleSubmit}>
           <div className="mt-8 md:flex items-center">
             <div className="flex flex-col">
