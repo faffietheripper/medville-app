@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { pusherClient } from "@/lib/pusher";
+import { toPusherKey } from "@/lib/utils";
+import React, { useState, useEffect } from "react";
 import { Check, UserPlus, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -9,6 +11,27 @@ export default function DoctorRequests({ incomingDoctorRequests, sessionId }) {
   const [doctorRequests, setDoctorRequests] = useState(incomingDoctorRequests);
 
   const router = useRouter();
+
+  useEffect(() => {
+    pusherClient.subscribe(
+      toPusherKey(`user:${sessionId}:incoming_doctor_requests`)
+    );
+    console.log("listening to ", `user:${sessionId}:incoming_doctor_requests`);
+
+    const doctorRequestHandler = ({ senderId, senderEmail }) => {
+      console.log("function got called");
+      setDoctorRequests((prev) => [...prev, { senderId, senderEmail }]);
+    };
+
+    pusherClient.bind("incoming_doctor_requests", doctorRequestHandler);
+
+    return () => {
+      pusherClient.unsubscribe(
+        toPusherKey(`user:${sessionId}:incoming_doctor_requests`)
+      );
+      pusherClient.unbind("incoming_doctor_requests", doctorRequestHandler);
+    };
+  }, [sessionId]);
 
   const acceptDoctor = async (senderId) => {
     await axios.post("/api/doctors/accept", { id: senderId });

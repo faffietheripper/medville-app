@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-
+import Messages from "@/components/Messages/Messages";
+import ChatInput from "@/components/ChatInput/ChatInput";
 import { authOptions } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import { fetchRedis } from "@/helpers/redis";

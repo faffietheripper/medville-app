@@ -56,7 +56,7 @@ export default function DoctorsGrid() {
         </div>
 
         <ul className="text-black">
-          <li className="grid grid-cols-3 gap-6 gap-y-10  text-3xl md:text-5xl  focus:outline-none focus:ring-2 focus:ring-gray-800">
+          <li className="grid grid-cols-4 gap-4 gap-y-10  text-3xl md:text-5xl  focus:outline-none focus:ring-2 focus:ring-gray-800">
             {doctors.map((doctor) => (
               <div key={doctor.id}>
                 <div class="h-[50vh]">

@@ -4,6 +4,8 @@ import db from "@/lib/db";
 import { fetchRedis } from "@/helpers/redis";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { pusherServer } from "@/lib/pusher";
+import { toPusherKey } from "@/lib/utils";
 
 export async function POST(req) {
   try {
@@ -57,7 +59,16 @@ export async function POST(req) {
       });
     }
 
-    // valid request, send friend request
+    // valid request, send doctor request
+
+    await pusherServer.trigger(
+      toPusherKey(`user:${idToAdd}:incoming_doctor_requests`),
+      "incoming_doctor_requests",
+      {
+        senderId: session.user.id,
+        senderEmail: session.user.email,
+      }
+    );
 
     await db.sadd(`user:${idToAdd}:incoming_doctor_requests`, session.user.id);
 
