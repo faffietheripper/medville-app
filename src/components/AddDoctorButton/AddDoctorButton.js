@@ -48,11 +48,9 @@ export default function AddDoctorButton() {
   };
 
   return (
-    <>
-      <h1 className="mx-20 pt-8 pb-4 font-bold text-4xl">
-        Invite Doctor by Email
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="mx-20">
+    <div className="border-b-2">
+      <h1 className=" pt-4 pb-4 font-bold text-xl">Invite Doctor by Email</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="">
         <label
           htmlFor="email"
           className="text-sm font-medium leading-6 text-gray-900"
@@ -60,14 +58,14 @@ export default function AddDoctorButton() {
           Insert Email Here
         </label>
 
-        <div className="mt-2 flex gap-4">
+        <div className="mt-2 flex flex-col gap-4">
           <input
             {...register("email")}
             type="text"
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="you@example.com"
           />
-          <button class=" px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
+          <button class=" px-6 py-3 mb-8 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
             Invite
           </button>
         </div>
@@ -76,6 +74,6 @@ export default function AddDoctorButton() {
           <p className="mt-1 text-sm text-green-600">Doctor request sent!</p>
         ) : null}
       </form>
-    </>
+    </div>
   );
 }

@@ -55,28 +55,40 @@ export default function DoctorRequests({ incomingDoctorRequests, sessionId }) {
 
   return (
     <>
+      <div className="text-xl mx-2 py-6 font-semibold leading-6 text-black">
+        Doctor Requests
+      </div>
       {doctorRequests.length === 0 ? (
-        <p className="text-sm text-zinc-500">Nothing to show here...</p>
+        <p className="text-sm text-zinc-500 mx-2">
+          No requests at the moment...
+        </p>
       ) : (
         doctorRequests.map((request) => (
-          <div key={request.senderId} className="flex gap-4 items-center">
-            <UserPlus className="text-black" />
-            <p className="font-medium text-lg">{request.senderEmail}</p>
-            <button
-              onClick={() => acceptDoctor(request.senderId)}
-              aria-label="accept friend"
-              className="w-8 h-8 bg-indigo-600 hover:bg-indigo-700 grid place-items-center rounded-full transition hover:shadow-md"
-            >
-              <Check className="font-semibold text-white w-3/4 h-3/4" />
-            </button>
+          <div
+            key={request.senderId}
+            className="flex flex-col gap-4 items-center border-b-2 p-4"
+          >
+            <div className="flex gap-x-4">
+              <UserPlus className="text-black text-xl" />
+              <p className=" text-sm">{request.senderEmail}</p>
+            </div>
+            <div className="flex gap-x-6">
+              <button
+                onClick={() => acceptDoctor(request.senderId)}
+                aria-label="accept friend"
+                className="w-8 h-8 bg-indigo-600 hover:bg-indigo-700 grid place-items-center rounded-full transition hover:shadow-md"
+              >
+                <Check className="font-semibold text-white w-3/4 h-3/4" />
+              </button>
 
-            <button
-              onClick={() => denyDoctor(request.senderId)}
-              aria-label="deny friend"
-              className="w-8 h-8 bg-red-600 hover:bg-red-700 grid place-items-center rounded-full transition hover:shadow-md"
-            >
-              <X className="font-semibold text-white w-3/4 h-3/4" />
-            </button>
+              <button
+                onClick={() => denyDoctor(request.senderId)}
+                aria-label="deny friend"
+                className="w-8 h-8 bg-red-600 hover:bg-red-700 grid place-items-center rounded-full transition hover:shadow-md"
+              >
+                <X className="font-semibold text-white w-3/4 h-3/4" />
+              </button>
+            </div>
           </div>
         ))
       )}

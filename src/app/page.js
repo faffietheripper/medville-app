@@ -37,7 +37,7 @@ export default async function Home() {
 
               <div class=" text-center px-3 py-2 bg-gray-200">
                 <button class="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded focus:outline-none">
-                  <Button />
+                  Click to continue
                 </button>
               </div>
             </div>

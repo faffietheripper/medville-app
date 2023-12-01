@@ -10,25 +10,23 @@ export default withAuth(
     const isAuth = await getToken({ req });
     const isLoginPage = pathname.startsWith("/login");
 
-    const sensitiveRoutes = ["/patient"];
+    const sensitiveRoutes = ["/patient", "/medicalprofessional"];
     const isAccessingSensitiveRoute = sensitiveRoutes.some((route) =>
       pathname.startsWith(route)
     );
 
     if (isLoginPage) {
       if (isAuth) {
-        return NextResponse.redirect(new URL("/patient", req.url));
+        return NextResponse.redirect(
+          new URL("/patient", "/medicalprofessional", req.url)
+        );
       }
 
       return NextResponse.next();
     }
 
     if (!isAuth && isAccessingSensitiveRoute) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-
-    if (pathname === "/") {
-      return NextResponse.redirect(new URL("/patient", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
   },
   {

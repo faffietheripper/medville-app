@@ -7,7 +7,7 @@ export default function Profile() {
     <div>
       <div className="container px-6 mx-auto">
         <div className="rounded shadow relative bg-white z-10 h-[72vh] overflow-y-scroll p-6 -mt-8 mb-8 w-full ">
-          <div className="text-3xl py-6 font-semibold leading-6 text-black">
+          <div className="text-3xl py-6 mx-14 font-semibold leading-6 text-black">
             User Profile
           </div>
 
@@ -74,10 +74,6 @@ export default function Profile() {
               </div>
             </div>
           </section>
-
-          <div className="text-3xl py-6 font-semibold leading-6 text-black">
-            Account Settings
-          </div>
         </div>
       </div>
     </div>
